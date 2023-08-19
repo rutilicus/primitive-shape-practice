@@ -88,7 +88,7 @@ function init() {
   };
 
   const cameraControls = {
-    radius: 2000,
+    radius: 3000,
     rotationX: 0,
     rotationY: 0
   };
@@ -185,10 +185,10 @@ function init() {
   function updateCamera() {
     camera.position.set(
       cameraControls.radius * Math.sin(cameraControls.rotationX)
-      * Math.cos(cameraControls.rotationY) / paramRate,
+      * Math.sin(cameraControls.rotationY) / paramRate,
       cameraControls.radius * Math.cos(cameraControls.rotationX) / paramRate,
       cameraControls.radius * Math.sin(cameraControls.rotationX)
-      * Math.sin(cameraControls.rotationY) / paramRate
+      * Math.cos(cameraControls.rotationY) / paramRate
     );
     camera.lookAt(scene.position);
     render();
@@ -197,11 +197,11 @@ function init() {
   function updateLight() {
     const x = 
       lightControls.radius * Math.sin(lightControls.rotationX)
-      * Math.cos(lightControls.rotationY) / paramRate;
+      * Math.sin(lightControls.rotationY) / paramRate;
     const y = lightControls.radius * Math.cos(lightControls.rotationX) / paramRate;
     const z = 
       lightControls.radius * Math.sin(lightControls.rotationX)
-      * Math.sin(lightControls.rotationY) / paramRate;
+      * Math.cos(lightControls.rotationY) / paramRate;
 
     spotLight.position.set(x, y, z);
     spotLight.intensity = lightControls.intensity;
